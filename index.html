@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find government teaching vacancies across India with clear deadlines and official links.">
+  <title>Teaching Vacancies | Smriti EduSar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Smriti EduSar home">
+      <span class="brand-mark">SE</span>
+      <span><strong>Smriti EduSar</strong><small>Teaching Vacancy Portal</small></span>
+    </a>
+    <a class="header-link" href="#how-to-use">How to use</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">GOVERNMENT TEACHING JOBS • INDIA</p>
+      <h1>Find your next teaching opportunity.</h1>
+      <p class="hero-copy">Clear vacancy information, important dates, eligibility summaries and links to official notices—all in one place.</p>
+      <div class="trust-note"><span class="dot"></span> Always check the official notification before applying.</div>
+    </section>
+
+    <section class="filters" aria-label="Search and filter vacancies">
+      <label class="search-label" for="search">Search vacancies</label>
+      <input id="search" type="search" placeholder="Try KVS, TGT Social Science, Uttar Pradesh…" autocomplete="off">
+      <div class="filter-grid">
+        <label>Post
+          <select id="post-filter">
+            <option value="">All posts</option>
+            <option>PRT</option><option>TGT</option><option>PGT</option><option>Other</option>
+          </select>
+        </label>
+        <label>Recruitment type
+          <select id="type-filter">
+            <option value="">Central and state</option>
+            <option>Central</option><option>State</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="status-filter">
+            <option value="">All statuses</option>
+            <option>Open</option><option>Upcoming</option><option>Closed</option><option>Result Released</option>
+          </select>
+        </label>
+      </div>
+      <p id="last-updated" class="muted small">Loading the latest published data…</p>
+    </section>
+
+    <section class="results-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">OPPORTUNITIES</p><h2>Teaching vacancies</h2></div>
+        <span id="result-count" class="count-pill">0 vacancies</span>
+      </div>
+      <div id="notice" class="notice" role="status">Connecting to the published vacancy list…</div>
+      <div id="vacancy-list" class="vacancy-list"></div>
+      <div id="empty-state" class="empty-state hidden">
+        <span class="empty-icon">⌕</span>
+        <h3>No matching vacancies</h3>
+        <p>Try another search or clear one of the filters.</p>
+        <button id="clear-filters" class="button button-secondary">Clear filters</button>
+      </div>
+    </section>
+
+    <section id="how-to-use" class="help-panel">
+      <p class="eyebrow">A QUICK GUIDE</p>
+      <h2>Before you apply</h2>
+      <ol>
+        <li>Open the official notification and read the full eligibility criteria.</li>
+        <li>Check the application deadline and any corrigendum or extension.</li>
+        <li>Apply only through the official application portal linked on the notice.</li>
+      </ol>
+      <p class="muted small">This portal is an independent educational resource from Smriti EduSar. Always rely on the recruiting authority's official notice for final details.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <strong>Smriti EduSar</strong><span>Helping learners find educational opportunities.</span>
+    <span class="footer-note">Vacancy details are published after review. Last-verified dates are shown where available.</span>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
