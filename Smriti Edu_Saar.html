@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smriti EduSaar – Image &amp; PDF Toolkit</title>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root{--bg:#f7f8fd;--card:#fff;--tx:#1d2140;--mut:#59607f;--b:#4338ca;--p:#7c3aed;--ln:#e2e5f3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx)}
+:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+header{background:#fff;border-bottom:1px solid var(--ln);position:sticky;top:0;z-index:5}
+.w{max-width:1040px;margin:0 auto;padding:0 16px}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;padding:10px 0}
+.logo{font-weight:800;font-size:1.3rem;color:var(--b);text-decoration:none}
+nav a{color:var(--tx);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+nav a:hover{background:#eef0fb}
+h1{font-size:clamp(2rem,6vw,3rem);margin:32px 0 8px;line-height:1.1}
+h2{margin:28px 0 12px}.mut{color:var(--mut)}
+.hero{text-align:center;padding-bottom:8px}
+#q{width:100%;max-width:520px;padding:16px 18px;font-size:1.05rem;border:2px solid var(--ln);border-radius:14px;margin-top:12px}
+.note{background:#eef2ff;border-radius:12px;padding:10px 14px;margin:16px auto;max-width:640px;font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.tc{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:18px;box-shadow:0 2px 10px rgba(67,56,202,.06);display:flex;flex-direction:column;gap:6px}
+.tc .ic{font-size:2rem}.tc h3{margin:0}.tc p{margin:0 0 8px;color:var(--mut);flex:1}
+.btn{background:linear-gradient(135deg,var(--b),var(--p));color:#fff;border:0;border-radius:12px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;min-height:48px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn.big{width:100%;margin-top:14px;font-size:1.1rem}.btn:disabled{opacity:.6}
+.btn.alt{background:#fff;color:var(--b);border:2px solid var(--b)}
+.link{background:none;border:0;color:var(--b);font:inherit;font-weight:700;cursor:pointer;padding:8px 0}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 2px 10px rgba(67,56,202,.06)}
+.steps{display:flex;flex-wrap:wrap;gap:6px;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:#eef0fb;border-radius:20px;padding:4px 12px;font-size:.9rem}
+.steps li:before{content:counter(s) ". "}
+.drop{border:2px dashed #a5b4fc;border-radius:14px;padding:22px;text-align:center}
+.drop.on{background:#eef2ff}
+.fl{list-style:none;padding:0;margin:10px 0 0}
+.fl li{display:flex;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--ln)}
+.fl span{flex:1;word-break:break-all}.fl button{min-width:40px;min-height:40px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+label{display:block;font-weight:600;margin:8px 0}
+input[type=number],input[type=text],select{width:100%;padding:12px;font:inherit;border:2px solid var(--ln);border-radius:10px;margin-top:4px}
+input[type=range]{width:100%}
+.row>label{flex:1;min-width:130px}
+.pre{background:#fff;border:2px solid var(--ln);border-radius:20px;padding:8px 14px;margin:4px 4px 4px 0;font:inherit;cursor:pointer;min-height:40px}
+.err{color:#b91c1c;background:#fef2f2;padding:10px 14px;border-radius:10px}
+.ok{color:#14532d;background:#f0fdf4;padding:10px 14px;border-radius:10px}
+.pv{display:flex;flex-wrap:wrap;gap:12px}.pv figure{margin:0;flex:1;min-width:140px}
+.pv img{max-width:100%;max-height:320px;border-radius:10px;border:1px solid var(--ln);background:#f1f1f1}
+details{background:#fff;border:1px solid var(--ln);border-radius:12px;padding:10px 14px;margin:8px 0}summary{font-weight:700;cursor:pointer}
+footer{margin-top:40px;background:#fff;border-top:1px solid var(--ln);padding:20px 0;text-align:center;color:var(--mut)}
+footer a{color:var(--b);margin:0 8px;font-weight:600}
+[hidden]{display:none!important}
+</style></head><body>
+<header><div class="w bar"><a class="logo" href="#" data-home>📁 Smriti EduSaar</a>
+<nav aria-label="Main"><a href="#" data-home>Home</a><a href="#img" data-jump>Image Tools</a><a href="#pdf" data-jump>PDF Tools</a><a href="#help" data-jump>Help</a></nav></div></header>
+<main class="w">
+<section id="home">
+<div class="hero"><h1>Image &amp; PDF Toolkit</h1>
+<p class="mut">Resize, compress, and prepare your files in seconds. Simple, free, and easy for everyone.</p>
+<label for="q" class="mut" style="text-align:center">Which tool do you need?</label>
+<input id="q" type="search" placeholder="Try: compress, merge, resize…" autocomplete="off">
+<div class="note">🔒 Your files are processed on your own device. Nothing is uploaded to a server. (Only the PDF/image code libraries are downloaded from a public CDN when the page loads.)</div></div>
+<h2 id="img">Image Tools</h2><div class="grid" id="g-img"></div>
+<h2 id="pdf">PDF Tools</h2><div class="grid" id="g-pdf"></div>
+<p id="none" class="mut" hidden>No tool matches that. Try “resize”, “compress” or “merge”.</p>
+<h2 id="help">Help</h2>
+<details><summary>What is a pixel?</summary><p>Pixels determine the width and height of your picture. A 192 × 192 image is 192 tiny dots wide and 192 tall.</p></details>
+<details><summary>What is KB and MB?</summary><p>They measure file size. 1 MB = 1024 KB. A phone photo is often 2–5 MB; many forms ask for 20–200 KB.</p></details>
+<details><summary>Why does an image become blurry after compression?</summary><p>JPEG and WebP shrink files by throwing away fine detail. Lower quality or smaller pixel size means a smaller file but a softer picture.</p></details>
+<details><summary>Why can a PDF sometimes become larger after processing?</summary><p>If a PDF is already optimized, redrawing its pages as pictures can add size. Smriti EduSaar then keeps your original and tells you.</p></details>
+<details><summary>Why might the exact requested file size not be possible?</summary><p>File size depends on picture content. We can get under a limit, but landing on exactly 100.0 KB is not guaranteed. Very small limits may not be reachable at readable quality.</p></details>
+<h2 id="about">About</h2><p>Smriti EduSaar is a free toolkit for students, teachers and job applicants who need files to fit online forms.</p>
+<h2 id="privacy">Privacy Policy</h2><p>No sign-up, no tracking code, no uploads. Files are read and processed in your browser and disappear when you close or refresh the page.</p>
+</section>
+<section id="tool" hidden></section>
+</main>
+<footer><div class="w"><a href="#about" data-jump>About</a><a href="#privacy" data-jump>Privacy Policy</a><a href="mailto:you@example.com">Contact</a><a href="mailto:you@example.com?subject=Smriti%20EduSaar%20feedback">Feedback</a><p>© 2026 Smriti EduSaar</p></div></footer>
+<script>
+const $=s=>document.querySelector(s),fmt=b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const base=n=>n.replace(/\.[^.]+$/,''),toBlob=(c,t,q)=>new Promise(r=>c.toBlob(r,t,q));
+const loadImg=f=>new Promise((ok,no)=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{URL.revokeObjectURL(u);ok(i)};i.onerror=()=>no(new Error('This image could not be opened. It may be damaged.'));i.src=u});
+function draw(img,w,h,bg){const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');if(bg){x.fillStyle=bg;x.fillRect(0,0,w,h)}x.drawImage(img,0,0,w,h);return c}
+const EXT={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+function needPdf(){if(!window.PDFLib||!window.pdfjsLib)throw new Error('PDF tools are still loading or could not load. Check your internet and try again.')}
+const PL=()=>{needPdf();return PDFLib};
+const pdfjs=()=>{needPdf();pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';return pdfjsLib};
+const v=id=>$('#'+id).value;
+const IMG='.jpg,.jpeg,.png,.webp',PDF='.pdf';
+const sizeUI=(id,pre)=>`<div class="row"><label>Size<input id="${id}" type="number" min="1" step="any" value="${pre[0]}"></label><label>Unit<select id="${id}u"><option>KB</option><option>MB</option></select></label></div>`;
+const bytesOf=id=>{const n=parseFloat(v(id));if(!(n>0))throw new Error('Please enter a size bigger than zero.');return n*(v(id+'u')==='MB'?1048576:1024)};
+const pres=(a,set)=>a.map(x=>`<button type="button" class="pre" data-set="${set(x)}">${x[1]||x}</button>`).join('');
+
+const T=[
+{id:'resize',cat:'img',icon:'📐',name:'Resize Image by Pixels',desc:'Pixels determine the width and height of your picture.',btn:'Resize & Download',accept:IMG,
+ opts:`<p id="orig" class="mut"></p><div class="row"><label>Width (px)<input id="w" type="number" min="1"></label><label>Height (px)<input id="h" type="number" min="1"></label></div>
+ <label><input id="lock" type="checkbox" checked> Maintain proportions</label>${pres([['192','192 × 192'],['300','300 × 300'],['512','512 × 512']],x=>`w=${x[0]},h=${x[0]},lock=0`)}`,
+ async init(f){const i=await loadImg(f[0]);this.r=i.width/i.height;$('#orig').textContent=`Original: ${i.width} × ${i.height} px`;$('#w').value=i.width;$('#h').value=i.height;
+  $('#w').oninput=()=>{if($('#lock').checked)$('#h').value=Math.round(v('w')/this.r)};$('#h').oninput=()=>{if($('#lock').checked)$('#w').value=Math.round(v('h')*this.r)}},
+ async run([f]){const i=await loadImg(f),w=Math.round(v('w')),h=Math.round(v('h'));if(!(w>0&&h>0)||w>12000||h>12000)throw new Error('Enter width and height between 1 and 12000 pixels.');
+  const t=f.type==='image/png'?'image/png':f.type==='image/webp'?'image/webp':'image/jpeg',b=await toBlob(draw(i,w,h,t==='image/jpeg'&&'#fff'),t,.92);
+  return{note:`Resized to ${w} × ${h} px (${fmt(b.size)}).`,items:[{blob:b,name:`${base(f.name)}-${w}x${h}.${EXT[t]}`}]}}},
+{id:'size',cat:'img',icon:'🎯',name:'Resize Image by File Size',desc:'Get an image under a size limit, like 50 KB or 200 KB.',btn:'Shrink & Download',accept:IMG,
+ opts:`<p>Maximum allowed size</p>${sizeUI('t',[50])}${pres([20,50,100,200,500],x=>`t=${x},tu=KB`).replace(/>(\d+)</g,'>$1 KB<')}`,
+ async run([f]){const T=bytesOf('t'),i=await loadImg(f);if(f.size<=T)return{note:`Already ${fmt(f.size)}, which is under your limit. Nothing to change.`,items:[{blob:f,name:f.name}]};
+  let sc=1,best,hit=false;for(let k=0;k<14&&!hit;k++){const c=draw(i,Math.max(1,Math.round(i.width*sc)),Math.max(1,Math.round(i.height*sc)),'#fff');let lo=.05,hi=.95;for(let n=0;n<7;n++){const m=(lo+hi)/2,b=await toBlob(c,'image/jpeg',m);if(b.size<=T){best=b;hit=true;lo=m}else hi=m}
+   if(!hit){best=await toBlob(c,'image/jpeg',.05);sc*=.8}}
+  const sm=sc<1?` The picture was also made smaller (${Math.round(sc*100)}% of original size).`:'';
+  return{note:hit?`Done: ${fmt(best.size)}, under your ${fmt(T)} limit.${sm}`:`Your limit could not be reached. The closest result is ${fmt(best.size)}. Try a bigger limit.`,items:[{blob:best,name:`${base(f.name)}-small.jpg`}]}}},
+{id:'compress',cat:'img',icon:'🗜️',name:'Compress Image',desc:'Make the file smaller and keep the picture looking good.',btn:'Compress',accept:IMG,
+ opts:`<label>Quality: <b id="qv">70</b>%<input id="qs" type="range" min="10" max="95" value="70" oninput="qv.textContent=this.value"></label><p class="mut">Higher quality keeps more detail but the file stays bigger. PNG files become WebP so transparency is kept.</p>`,
+ async run([f]){const i=await loadImg(f),t=f.type==='image/jpeg'?'image/jpeg':'image/webp',b=await toBlob(draw(i,i.width,i.height,t==='image/jpeg'&&'#fff'),t,v('qs')/100);
+  if(b.size>=f.size)return{note:`This image is already well compressed (${fmt(f.size)}). Try a lower quality.`,items:[{blob:b,name:`${base(f.name)}-compressed.${EXT[t]}`,orig:f}]};
+  return{note:`${fmt(f.size)} → ${fmt(b.size)} (${Math.round(100-b.size/f.size*100)}% smaller).`,items:[{blob:b,name:`${base(f.name)}-compressed.${EXT[t]}`,orig:f}]}}},
+{id:'convert',cat:'img',icon:'🔄',name:'Convert Image Format',desc:'Change between JPG, PNG and WebP.',btn:'Convert',accept:IMG,
+ opts:`<label>Convert to<select id="fm"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></label><p class="mut">JPG has no transparency. Clear areas turn white.</p>`,
+ async run([f]){const i=await loadImg(f),t=v('fm'),b=await toBlob(draw(i,i.width,i.height,t==='image/jpeg'&&'#fff'),t,.92);
+  return{note:`Converted to ${EXT[t].toUpperCase()} (${fmt(b.size)}).`+(t==='image/jpeg'&&f.type!=='image/jpeg'?' Any transparent areas are now white.':''),items:[{blob:b,name:`${base(f.name)}.${EXT[t]}`}]}}},
+{id:'pdfsize',cat:'pdf',icon:'📉',name:'Compress PDF / Resize to Target Size',desc:'Make a PDF smaller, or get it under a size limit.',btn:'Compress PDF',accept:PDF,
+ opts:`<label>Compression level<select id="lv"><option value="0">Light</option><option value="1" selected>Balanced</option><option value="2">Strong</option></select></label>
+ <label><input id="lim" type="checkbox"> I need it under a maximum size</label><div id="limb" hidden>${sizeUI('mx',[200])}</div>
+ <p class="mut">Pages are turned into pictures to save space, so text will not be selectable afterwards. Scanned or already-optimized PDFs may shrink very little.</p>`,
+ init(){$('#lim').onchange=e=>$('#limb').hidden=!e.target.checked},
+ async run([f],msg){const P=PL(),J=pdfjs(),pdf=await J.getDocument({data:await f.arrayBuffer()}).promise,L=[[1.6,.75],[1.25,.55],[1,.35],[.8,.25],[.65,.2]];
+  const build=async(sc,q)=>{const o=await P.PDFDocument.create();for(let p=1;p<=pdf.numPages;p++){msg(`Working… page ${p} of ${pdf.numPages}`);const pg=await pdf.getPage(p),vp=pg.getViewport({scale:sc}),c=document.createElement('canvas');c.width=vp.width;c.height=vp.height;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:x,viewport:vp}).promise;
+   const jb=await toBlob(c,'image/jpeg',q),im=await o.embedJpg(await jb.arrayBuffer()),s=pg.getViewport({scale:1}),page=o.addPage([s.width,s.height]);page.drawImage(im,{x:0,y:0,width:s.width,height:s.height});c.width=c.height=0}
+   return new Blob([await o.save()],{type:'application/pdf'})};
+  const lim=$('#lim').checked?bytesOf('mx'):0;let k=+v('lv'),b=await build(...L[k]);
+  while(lim&&b.size>lim&&k<L.length-1){k++;b=await build(...L[k])}
+  if(b.size>=f.size)return{note:`This PDF is already well optimized (${fmt(f.size)}); compressing would make it bigger, so your original is kept. Try “Strong”.`,items:[{blob:f,name:f.name}]};
+  const red=Math.round(100-b.size/f.size*100),ok=!lim||b.size<=lim;
+  return{note:`${fmt(f.size)} → ${fmt(b.size)} (${red}% smaller). `+(lim?(ok?`Verified: under your ${fmt(lim)} limit.`:`Could not get under ${fmt(lim)}. This is the smallest readable result.`):''),items:[{blob:b,name:`${base(f.name)}-compressed.pdf`}]}}},
+{id:'merge',cat:'pdf',icon:'🧩',name:'Merge PDF Files',desc:'Join several PDFs into one. Use the arrows to set the order.',btn:'Merge PDFs',accept:PDF,multi:1,opts:'',
+ async run(fs){if(fs.length<2)throw new Error('Choose at least two PDFs to merge.');const P=PL(),o=await P.PDFDocument.create();
+  for(const f of fs){const d=await P.PDFDocument.load(await f.arrayBuffer());(await o.copyPages(d,d.getPageIndices())).forEach(p=>o.addPage(p))}
+  const b=new Blob([await o.save()],{type:'application/pdf'});return{note:`Merged ${fs.length} files. Final size: ${fmt(b.size)}.`,items:[{blob:b,name:'merged.pdf'}]}}},
+{id:'split',cat:'pdf',icon:'✂️',name:'Split PDF',desc:'Pull out pages, or save every page as its own file.',btn:'Split PDF',accept:PDF,
+ opts:`<p id="pc" class="mut"></p><label>Pages to keep (for example 1-5 or 1,3,7)<input id="rg" type="text" value="1"></label><label><input id="ea" type="checkbox"> Split every page into a separate PDF</label>`,
+ async init(f){try{const d=await PL().PDFDocument.load(await f[0].arrayBuffer());$('#pc').textContent=`This PDF has ${d.getPageCount()} pages.`}catch(e){$('#pc').textContent=''}},
+ async run([f]){const P=PL(),d=await P.PDFDocument.load(await f.arrayBuffer()),n=d.getPageCount(),mk=async ix=>{const o=await P.PDFDocument.create();(await o.copyPages(d,ix)).forEach(p=>o.addPage(p));return new Blob([await o.save()],{type:'application/pdf'})};
+  if($('#ea').checked){const it=[];for(let i=0;i<n;i++)it.push({blob:await mk([i]),name:`${base(f.name)}-page-${i+1}.pdf`});return{note:`Made ${n} files.`,items:it}}
+  const ix=[];for(const part of v('rg').split(',')){const m=part.trim().match(/^(\d+)(?:\s*-\s*(\d+))?$/);if(!m)throw new Error('Type pages like 1-5 or 1,3,7.');const a=+m[1],z=+(m[2]||m[1]);if(a<1||z<a||z>n)throw new Error(`Pages must be between 1 and ${n}.`);for(let i=a;i<=z;i++)ix.push(i-1)}
+  const b=await mk(ix);return{note:`Extracted ${ix.length} page(s) (${fmt(b.size)}).`,items:[{blob:b,name:`${base(f.name)}-pages.pdf`}]}}},
+{id:'img2pdf',cat:'pdf',icon:'🖼️',name:'Convert Images to PDF',desc:'Turn one or more pictures into a single PDF.',btn:'Make PDF',accept:IMG,multi:1,
+ opts:`<div class="row"><label>Page size<select id="ps"><option value="a4">A4</option><option value="letter">Letter</option><option value="fit">Fit to image</option></select></label><label>Orientation<select id="or"><option value="p">Portrait</option><option value="l">Landscape</option></select></label><label>Margin (mm)<input id="mg" type="number" min="0" max="50" value="10"></label></div>`,
+ async run(fs){const P=PL(),o=await P.PDFDocument.create(),m=Math.max(0,Math.min(50,+v('mg')||0))*2.835;
+  for(const f of fs){const i=await loadImg(f);let im;if(f.type==='image/jpeg')im=await o.embedJpg(await f.arrayBuffer());else if(f.type==='image/png')im=await o.embedPng(await f.arrayBuffer());else im=await o.embedPng(await (await toBlob(draw(i,i.width,i.height),'image/png')).arrayBuffer());
+   let [pw,ph]=v('ps')==='a4'?[595.28,841.89]:v('ps')==='letter'?[612,792]:[i.width+2*m,i.height+2*m];if(v('ps')!=='fit'&&v('or')==='l')[pw,ph]=[ph,pw];
+   const s=Math.min((pw-2*m)/i.width,(ph-2*m)/i.height),w=i.width*s,h=i.height*s;o.addPage([pw,ph]).drawImage(im,{x:(pw-w)/2,y:(ph-h)/2,width:w,height:h})}
+  const b=new Blob([await o.save()],{type:'application/pdf'});return{note:`Made a ${fs.length}-page PDF (${fmt(b.size)}).`,items:[{blob:b,name:'images.pdf'}]}}}
+];
+
+const card=t=>`<div class="tc" data-k="${t.name.toLowerCase()} ${t.desc.toLowerCase()}"><div class="ic" aria-hidden="true">${t.icon}</div><h3>${t.name}</h3><p>${t.desc}</p><button class="btn" data-open="${t.id}">Open Tool</button></div>`;
+['img','pdf'].forEach(c=>$('#g-'+c).innerHTML=T.filter(t=>t.cat===c).map(card).join(''));
+$('#q').oninput=e=>{const s=e.target.value.toLowerCase().trim();let n=0;document.querySelectorAll('.tc').forEach(c=>{const h=!c.dataset.k.includes(s);c.hidden=h;if(!h)n++});$('#none').hidden=n>0};
+
+let cur,files=[];
+const msg=(t,e)=>{$('#msg').innerHTML=t?`<p class="${e?'err':'mut'}">${esc(t)}</p>`:''};
+const home=()=>{$('#tool').hidden=true;$('#tool').innerHTML='';$('#home').hidden=false;window.scrollTo(0,0)};
+function open(id){cur=T.find(t=>t.id===id);files=[];$('#home').hidden=true;const s=$('#tool');s.hidden=false;window.scrollTo(0,0);
+ s.innerHTML=`<button class="link" data-home>← All tools</button><h2 style="margin-top:4px">${cur.icon} ${cur.name}</h2><p class="mut">${cur.desc}</p>
+ <ol class="steps"><li>Upload</li><li>Choose</li><li>Click</li><li>Preview</li><li>Download</li></ol>
+ <div class="card"><div id="drop" class="drop"><p><b>Step 1:</b> Upload your file${cur.multi?'s':''}</p><button class="btn" id="pick" type="button">Choose File${cur.multi?'s':''}</button><input id="fi" type="file" hidden accept="${cur.accept}" ${cur.multi?'multiple':''}><p class="mut">or drop ${cur.multi?'them':'it'} here (${cur.accept.replace(/\./g,'').toUpperCase().replace(/,/g,', ')})</p></div><ul id="fl" class="fl"></ul></div>
+ <div class="card" id="opt" hidden><p><b>Step 2:</b> Choose what to change</p>${cur.opts}<button class="btn big" id="go">Step 3: ${cur.btn}</button></div><div id="msg" role="status" aria-live="polite"></div><div id="res"></div>`;
+ const fi=$('#fi'),d=$('#drop');$('#pick').onclick=()=>fi.click();fi.onchange=()=>{add([...fi.files]);fi.value=''};
+ d.ondragover=e=>{e.preventDefault();d.classList.add('on')};d.ondragleave=()=>d.classList.remove('on');d.ondrop=e=>{e.preventDefault();d.classList.remove('on');add([...e.dataTransfer.files])};
+ $('#go').onclick=run}
+async function add(l){msg('');const ok=cur.accept.split(',');const good=l.filter(f=>ok.some(x=>f.name.toLowerCase().endsWith(x)));
+ if(good.length<l.length)msg(`Some files were skipped. This tool accepts: ${cur.accept.replace(/\./g,'').toUpperCase().replace(/,/g,', ')}.`,1);
+ const big=good.filter(f=>f.size>100*1048576);if(big.length)msg('Files over 100 MB are too large for a phone or browser to handle safely.',1);
+ const use=good.filter(f=>f.size<=100*1048576);if(!use.length)return;files=cur.multi?files.concat(use):[use[0]];list();$('#opt').hidden=false;$('#res').innerHTML='';
+ if(cur.init)try{await cur.init(files)}catch(e){msg(e.message,1)}}
+function list(){$('#fl').innerHTML=files.map((f,i)=>`<li><span>📄 ${esc(f.name)} · ${fmt(f.size)}</span>${cur.multi?`<button class="pre" data-mv="${i},-1" aria-label="Move up">↑</button><button class="pre" data-mv="${i},1" aria-label="Move down">↓</button><button class="pre" data-mv="${i},0" aria-label="Remove">✕</button>`:''}</li>`).join('')}
+async function run(){if(!files.length)return msg('Please choose a file first.',1);const b=$('#go');b.disabled=true;$('#res').innerHTML='';msg('Working… please wait.');
+ try{const r=await cur.run(files,t=>msg(t));show(r);msg('')}catch(e){console.error(e);msg(e.message||'Something went wrong. Try another file.',1)}b.disabled=false}
+function show(r){$('#res').innerHTML=`<div class="card"><p><b>Steps 4–5:</b> Preview and download</p><p class="ok">${esc(r.note)}</p>`+r.items.map(it=>{const u=URL.createObjectURL(it.blob),im=it.blob.type.startsWith('image/'),o=it.orig?URL.createObjectURL(it.orig):'';
+  return(im?`<div class="pv">${o?`<figure><figcaption>Before (${fmt(it.orig.size)})</figcaption><img src="${o}" alt="Original"></figure>`:''}<figure><figcaption>After (${fmt(it.blob.size)})</figcaption><img src="${u}" alt="Result"></figure></div>`:'')+
+  `<p>${esc(it.name)} · ${fmt(it.blob.size)}</p><a class="btn" href="${u}" download="${esc(it.name)}">⬇ Download</a>`}).join('<hr>')+
+  `<p><button class="btn alt" id="again">Try another file</button> <button class="btn alt" data-home>Start over</button></p></div>`;
+ $('#again').onclick=()=>{files=[];list();$('#res').innerHTML='';$('#opt').hidden=true;window.scrollTo(0,0)};$('#res').scrollIntoView({behavior:'smooth'})}
+document.addEventListener('click',e=>{const t=e.target;
+ if(t.dataset.open)open(t.dataset.open);else if(t.closest('[data-home]')){e.preventDefault();home()}
+ else if(t.dataset.set){t.dataset.set.split(',').forEach(p=>{const[k,x]=p.split('=');if(k==='lock')$('#lock').checked=x==='1';else{$('#'+k).value=x}})}
+ else if(t.dataset.mv){const[i,d]=t.dataset.mv.split(',').map(Number);if(d===0)files.splice(i,1);else if(files[i+d]){[files[i],files[i+d]]=[files[i+d],files[i]]}list();if(!files.length)$('#opt').hidden=true}
+ else if(t.closest('[data-jump]')){e.preventDefault();home();document.getElementById(t.closest('[data-jump]').getAttribute('href').slice(1)).scrollIntoView()}});
+</script></body></html>
